@@ -5,7 +5,7 @@ import { IDiscount } from '../interfaces/discount.interface';
   providedIn: 'root'
 })
 export class DiscountService {
-  discountsS: Array<IDiscount> = [
+  private discountsS: Array<IDiscount> = [    //приватний, тому роблю метод який буде повертати discountsS
     {
       id: 1,
       title: 'Наша фірмова акція "2+1" ',
@@ -19,6 +19,26 @@ export class DiscountService {
       image: 'https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg'
     }
   ];
-
   constructor() { }
+
+  getDiscountsS() {
+    return this.discountsS;   //метод який повертає масив =  private discountsS.
+  }
+
+  setDiscountsS(discount: IDiscount): void {
+    this.discountsS.push(discount); // добавляє значення в масив discountsS
+  }
+
+  deleteDiscountsS(id: number): void {
+    const INDEX = this.discountsS.findIndex(item => item.id === id);
+    this.discountsS.splice(INDEX, 1);
+    // є масив об'єктів, знаходжу серед них індех того об'єкта з конкретною id
+    // метод findIndex в кол бек ф-ції приймає три параметра: val, index, arr
+    // перебираю масив, кожен item, якщо в об'єкті його id буде рівна id яка прийнялась в параметрі. 
+  }
+
+  updateDiscountsS(index: IDiscount): void {
+    const INDEX = this.discountsS.findIndex(item => item.id === index.id);
+    this.discountsS.splice(INDEX, 1, index);
+  }
 }

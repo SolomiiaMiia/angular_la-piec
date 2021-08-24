@@ -1,1 +1,15 @@
-<p>discount works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4" *ngFor="let item of discount">
+      <div class="card">
+        <img [src]="item.image" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{item.title}}</h5>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-danger">Скористатися</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

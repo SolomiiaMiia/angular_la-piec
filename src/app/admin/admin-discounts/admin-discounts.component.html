@@ -1,6 +1,22 @@
-<p>admin-discounts works!</p>
+<form style="margin-left: 40px">
+  <div class="form-group">
+    <label for="itemTitle">Title</label>
+    <input [(ngModel)]="itemTitle" name="itemTitle" type="text" class="form-control" id="itemTitle">
+  </div>
+  <div class="form-group">
+    <label for="itemUrlName">URL</label>
+    <input [(ngModel)]="itemUrlName" name="itemUrlName" type="text" class="form-control" id="itemUrlName">
+  </div>
+  <div class="form-group">
+    <label for="itemDescription">Description</label>
+    <textarea [(ngModel)]="itemDescription" name="itemDescription" class="form-control" id=""></textarea>
+  </div>
+  <br>
+  <button (click)="addItem()" type="button" class="btn btn-success">Add</button>
+</form>
 
-<table class="table">
+<hr>
+<table class="table" style="margin-left: 40px">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -8,6 +24,8 @@
       <th scope="col">URL</th>
       <th scope="col">Description</th>
       <th scope="col">Image</th>
+      <th scope="col">Eddit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -15,10 +33,12 @@
       <td>{{item.id}}</td>
       <td>{{item.title}}</td>
       <td>{{item.urlName}}</td>
-      <td>{{item.description}}</td>
+      <td>{{item.description | slice: 0:30}}...</td>
       <td>
         <img [src]="item.image" width="130px" alt="">
       </td>
+      <td><button (click)="editDiscount()" class="btn btn-warning">Edit</button></td>
+      <td><button (click)="deleteDiscount()" class="btn btn-danger">Delete</button></td>
     </tr>
   </tbody>
 </table>
