@@ -36,14 +36,20 @@ export class AdminDiscountsComponent implements OnInit {
 
   addItem(): void {
     const NEW_ITEM = new Discount(this.itemID, this.itemTitle, this.itemUrlName, this.itemDescription, this.itemImage);
-    if (this.adminDiscount.length >= 0) {
+    if (this.adminDiscount.length > 0) {
       NEW_ITEM.id = this.adminDiscount.slice(-1)[0].id + 1;
       // slice повертає масив з останнім елементом [0],
       // доступаюсь до останнього елемента, до id i + 1;
       this.discService.setDiscountsS(NEW_ITEM);
-      this.modalRef?.hide();
       this.resetForm();
+      this.modalRef?.hide();
     }
+    else {
+      this.discService.setDiscountsS(NEW_ITEM);
+      this.resetForm();
+      this.modalRef?.hide();
+    }
+
   }
 
   private resetForm(): void {
