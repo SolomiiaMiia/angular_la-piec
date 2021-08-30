@@ -1,4 +1,4 @@
-<form style="margin-left: 40px">
+<!-- <form style="margin-left: 40px">
   <div class="form-group">
     <label for="itemTitle">Title</label>
     <input [(ngModel)]="itemTitle" name="itemTitle" type="text" class="form-control" id="itemTitle">
@@ -12,10 +12,14 @@
     <textarea [(ngModel)]="itemDescription" name="itemDescription" class="form-control" id=""></textarea>
   </div>
   <br>
-  <button (click)="addItem()" type="button" class="btn btn-success">Add</button>
-</form>
+  <button *ngIf="!editStatus" (click)="addItem()" type="button" class="btn btn-success">Add</button>
+  <button *ngIf="editStatus" (click)="saveItem()" type="button" class="btn btn-info">Save</button>
+</form> -->
+<br>
+<button type="button" class="btn btn-primary" style="margin-left: 40px" (click)="openModal(template)">Create
+  discount</button>
+<br><br>
 
-<hr>
 <table class="table" style="margin-left: 40px">
   <thead>
     <tr>
@@ -37,8 +41,53 @@
       <td>
         <img [src]="item.image" width="130px" alt="">
       </td>
-      <td><button (click)="editDiscount()" class="btn btn-warning">Edit</button></td>
-      <td><button (click)="deleteDiscount()" class="btn btn-danger">Delete</button></td>
+      <td><button (click)="editDiscount(item, template)" class="btn btn-warning">Edit</button></td>
+      <!-- <td><button (click)="deleteDiscount(item)" class="btn btn-danger">Delete</button></td> -->
+      <td><button (click)="openModalConfirm(templateConfirm)" class=" btn btn-danger">Delete</button></td>
+
     </tr>
   </tbody>
 </table>
+
+
+<!-- modal -->
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form style="margin-left: 40px">
+      <div class="form-group">
+        <label for="itemTitle">Title</label>
+        <input [(ngModel)]="itemTitle" name="itemTitle" type="text" class="form-control" id="itemTitle">
+      </div>
+      <div class="form-group">
+        <label for="itemUrlName">URL</label>
+        <input [(ngModel)]="itemUrlName" name="itemUrlName" type="text" class="form-control" id="itemUrlName">
+      </div>
+      <div class="form-group">
+        <label for="itemDescription">Description</label>
+        <textarea [(ngModel)]="itemDescription" name="itemDescription" class="form-control" id=""></textarea>
+      </div>
+      <br>
+      <button *ngIf="!editStatus" (click)="addItem()" type="button" class="btn btn-success">Add</button>
+      <button *ngIf="editStatus" (click)="saveItem()" type="button" class="btn btn-info">Save</button>
+    </form>
+  </div>
+</ng-template>
+
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModalConfirm(templateConfirm)">Open modal</button> -->
+<br><br>
+<ng-template #templateConfirm>
+  <div class="modal-body text-center">
+    <p>Ви впевнені?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Так</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">Ні</button>
+  </div>
+</ng-template>
