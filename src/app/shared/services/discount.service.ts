@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IDiscount } from '../interfaces/discount.interface';
 
 @Injectable({
@@ -19,7 +21,12 @@ export class DiscountService {
       image: 'https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg'
     }
   ];
-  constructor() { }
+
+  private urlJson: string;
+
+  constructor(private http: HttpClient) {
+    this.urlJson = 'http://localhost:3000/discounts';
+  }
 
   getDiscountsS() {
     return this.discountsS;   //метод який повертає масив =  private discountsS.
@@ -32,6 +39,7 @@ export class DiscountService {
   deleteDiscountsS(id: number): void {
     const INDEX = this.discountsS.findIndex(item => item.id === id);
     this.discountsS.splice(INDEX, 1);
+
     // є масив об'єктів, знаходжу серед них індех того об'єкта з конкретною id
     // метод findIndex в кол бек ф-ції приймає три параметра: val, index, arr
     // перебираю масив, кожен item, якщо в об'єкті його id буде рівна id яка прийнялась в параметрі. 
@@ -41,4 +49,14 @@ export class DiscountService {
     const INDEX = this.discountsS.findIndex(item => item.id === index.id);
     this.discountsS.splice(INDEX, 1, index);
   }
+
+  getJSONDiscountsS(): Observable<Array<IDiscount>> {
+    return this.http.get<Array<IDiscount>>(this.urlJson);
+  }
+
+  postJSONDiscountsS(discount: IDiscount): Observable<IDiscount> {
+    return this.http.post<IDiscount>(this.urlJson, discount);
+  }
+
+
 }
