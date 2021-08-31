@@ -66,7 +66,7 @@ export class AdminDiscountsComponent implements OnInit {
   // }    замінила нижче 
 
   addItem(): void {
-    const NEW_ITEM = new Discount(this.itemID, this.itemTitle, this.itemUrlName,
+    const NEW_ITEM = new Discount(this.itemTitle, this.itemUrlName,
       this.itemDescription, this.itemImage);
     delete NEW_ITEM.id;
     this.discService.postJSONDiscountsS(NEW_ITEM).subscribe(
@@ -88,7 +88,7 @@ export class AdminDiscountsComponent implements OnInit {
 
   editDiscount(item: IDiscount, template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
-    this.itemID = item.id;
+    // this.itemID = item.id;
     this.itemTitle = item.title;
     this.itemUrlName = item.urlName;
     this.itemDescription = item.description;
@@ -97,7 +97,7 @@ export class AdminDiscountsComponent implements OnInit {
 
 
   saveItem(): void {
-    const UPDATE_ITEM = new Discount(this.itemID, this.itemTitle, this.itemUrlName, this.itemDescription, this.itemImage);
+    const UPDATE_ITEM = new Discount(this.itemTitle, this.itemUrlName, this.itemDescription, this.itemImage);
     this.discService.updateDiscountsS(UPDATE_ITEM);
     this.resetForm();
     this.editStatus = false;

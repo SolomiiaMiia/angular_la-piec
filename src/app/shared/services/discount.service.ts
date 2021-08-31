@@ -23,6 +23,7 @@ export class DiscountService {
   ];
 
   private urlJson: string;
+  a: any;
 
   constructor(private http: HttpClient) {
     this.urlJson = 'http://localhost:3000/discounts';
@@ -57,6 +58,4 @@ export class DiscountService {
   postJSONDiscountsS(discount: IDiscount): Observable<IDiscount> {
     return this.http.post<IDiscount>(this.urlJson, discount);
   }
-
-
 }
