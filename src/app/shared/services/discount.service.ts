@@ -23,7 +23,7 @@ export class DiscountService {
   ];
 
   private urlJson: string;
-  a: any;
+
 
   constructor(private http: HttpClient) {
     this.urlJson = 'http://localhost:3000/discounts';
@@ -40,7 +40,6 @@ export class DiscountService {
   deleteDiscountsS(id: number): void {
     const INDEX = this.discountsS.findIndex(item => item.id === id);
     this.discountsS.splice(INDEX, 1);
-
     // є масив об'єктів, знаходжу серед них індех того об'єкта з конкретною id
     // метод findIndex в кол бек ф-ції приймає три параметра: val, index, arr
     // перебираю масив, кожен item, якщо в об'єкті його id буде рівна id яка прийнялась в параметрі. 
@@ -58,4 +57,12 @@ export class DiscountService {
   postJSONDiscountsS(discount: IDiscount): Observable<IDiscount> {
     return this.http.post<IDiscount>(this.urlJson, discount);
   }
+  deleteJSONDiscountsS(id: number): Observable<IDiscount> {
+    return this.http.delete<IDiscount>(`${this.urlJson}/${id}`);
+  }
+
+  updateJSONDiscountsS(discount: IDiscount): Observable<IDiscount> {
+    return this.http.put<IDiscount>(`${this.urlJson}/${discount.id}`, discount)
+  }
+
 }

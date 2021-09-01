@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminDiscountsComponent implements OnInit {
   adminDiscount: Array<IDiscount> = [];
-  itemID: number = 1;
+  itemID?: number = 1;
   itemTitle: string = '';
   itemUrlName: string = '';
   itemDescription: string = '';
@@ -27,17 +27,9 @@ export class AdminDiscountsComponent implements OnInit {
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    // this.getStaticDiscounts()
-    // замінила на
     this.getServerJDiscounts();
   }
 
-  // private getStaticDiscounts(): void {
-  // this.adminDiscount = this.discService.getDiscountsS();
-  //присвоюємо adminDiscount об'єкт з discService.discountsS (з сервіса).
-  //виводимо дані adminDiscount на сторінку
-  // замінила на getServerJDiscounts()
-  // }
 
   private getServerJDiscounts(): void {
     this.discService.getJSONDiscountsS().subscribe(
@@ -48,22 +40,7 @@ export class AdminDiscountsComponent implements OnInit {
     );
   }
 
-  // addItem(): void {
-  //   const NEW_ITEM = new Discount(this.itemID, this.itemTitle, this.itemUrlName, this.itemDescription, this.itemImage);
-  //   if (this.adminDiscount.length > 0) {
-  //     NEW_ITEM.id = this.adminDiscount.slice(-1)[0].id + 1;
-  //     // slice повертає масив з останнім елементом [0],
-  //     // доступаюсь до останнього елемента, до id i + 1;
-  //     this.discService.setDiscountsS(NEW_ITEM);
-  //     this.resetForm();
-  //     this.modalRef?.hide();
-  //   }
-  //   else {
-  //     this.discService.setDiscountsS(NEW_ITEM);
-  //     this.resetForm();
-  //     this.modalRef?.hide();
-  //   }
-  // }    замінила нижче 
+
 
   addItem(): void {
     const NEW_ITEM = new Discount(this.itemTitle, this.itemUrlName,
@@ -80,15 +57,15 @@ export class AdminDiscountsComponent implements OnInit {
   }
 
   private resetForm(): void {
-    this.itemID = 1;
     this.itemTitle = '';
     this.itemUrlName = '';
     this.itemDescription = '';
+    this.itemID = 1;
   }
 
   editDiscount(item: IDiscount, template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
-    // this.itemID = item.id;
+    this.itemID = item.id;
     this.itemTitle = item.title;
     this.itemUrlName = item.urlName;
     this.itemDescription = item.description;
@@ -97,10 +74,15 @@ export class AdminDiscountsComponent implements OnInit {
 
 
   saveItem(): void {
-    const UPDATE_ITEM = new Discount(this.itemTitle, this.itemUrlName, this.itemDescription, this.itemImage);
-    this.discService.updateDiscountsS(UPDATE_ITEM);
-    this.resetForm();
+    const UPDATE_ITEM = new Discount(this.itemTitle, this.itemUrlName, this.itemDescription, this.itemImage, this.itemID,);
+    this.discService.updateJSONDiscountsS(UPDATE_ITEM).subscribe(
+      () => {
+        this.getServerJDiscounts();
+      },
+      err => console.log(err)
+    );
     this.editStatus = false;
+    this.resetForm();
     this.modalRef?.hide();
   }
 
@@ -108,27 +90,40 @@ export class AdminDiscountsComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-
-  deleteDiscount(template: TemplateRef<any>): void {
-    // if (confirm('Ви впевнені?')) {
-    //   this.discService.deleteDiscountsS(item.id);
-    // }
-    this.modalRef = this.modalService.show(template);
+  deleteDiscount(discount: IDiscount): void {
+    if (confirm('Ви впевнені?')) {
+      this.discService.deleteJSONDiscountsS(discount.id).subscribe(
+        () => {
+          this.getServerJDiscounts();
+        },
+        err => console.log(err)
+      );
+    }
   }
 
 
-  openModalConfirm(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
-
-  }
-
-  confirm() {
-    this.discService.deleteDiscountsS(this.itemID);
-    this.modalRef?.hide();
-  }
-
-  decline(): void {
-    this.modalRef?.hide();
-  }
 
 }
+
+
+// методи для модального вікна для delete
+      // openModalConfirm(template: TemplateRef<any>) {
+      //   this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+
+      // }
+    // confirm(discount: IDiscount): void {
+      //   this.discService.deleteJSONDiscountsS(discount.id).subscribe(
+        //     () => {
+          //       this.getServerJDiscounts();
+
+  //     },
+  //     err => console.log(err)
+  //   );
+  //   this.modalRef?.hide();
+  // }
+
+  // decline(): void {
+  //   this.modalRef?.hide();
+  // }
+
+

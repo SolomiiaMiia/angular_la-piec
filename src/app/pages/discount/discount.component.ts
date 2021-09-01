@@ -14,13 +14,24 @@ export class DiscountComponent implements OnInit {
   constructor(private discService: DiscountService) { }
 
   ngOnInit(): void {
-    this.getStaticDiscounts()
+    this.getServerJDiscounts();
   }
 
-  private getStaticDiscounts(): void {
-    this.discount = this.discService.getDiscountsS();
-    //присвоюємо adminDiscount об'єкт з discService.discountsS (з сервіса).
-    //виводимо дані adminDiscount на сторінку
+
+  private getServerJDiscounts(): void {
+    this.discService.getJSONDiscountsS().subscribe(
+      data => {
+        this.discount = data;
+      },
+      err => console.log(err)
+    );
   }
+
+
+  // private getStaticDiscounts(): void {
+  //   this.discount = this.discService.getDiscountsS();
+  //   //присвоюємо adminDiscount об'єкт з discService.discountsS (з сервіса).
+  //   //виводимо дані adminDiscount на сторінку
+  // }
 
 }

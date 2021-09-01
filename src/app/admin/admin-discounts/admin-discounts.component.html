@@ -42,9 +42,8 @@
         <img [src]="item.image" width="130px" alt="">
       </td>
       <td><button (click)="editDiscount(item, template)" class="btn btn-warning">Edit</button></td>
-      <!-- <td><button (click)="deleteDiscount(item)" class="btn btn-danger">Delete</button></td> -->
-      <td><button (click)="openModalConfirm(templateConfirm)" class=" btn btn-danger">Delete</button></td>
-
+      <td><button (click)="deleteDiscount(item)" class="btn btn-danger">Delete</button></td>
+      <!-- <td><button (click)="openModalConfirm(templateConfirm)" class=" btn btn-danger">Delete</button></td> -->
     </tr>
   </tbody>
 </table>
@@ -82,12 +81,14 @@
 </ng-template>
 
 
+<!-- модалка для видалення -->
 <!-- <button type="button" class="btn btn-primary" (click)="openModalConfirm(templateConfirm)">Open modal</button> -->
-<br><br>
+<!-- <br><br>
 <ng-template #templateConfirm>
   <div class="modal-body text-center">
     <p>Ви впевнені?</p>
-    <button type="button" class="btn btn-default" (click)="confirm()">Так</button>
+
+    <button type="button" class="btn btn-default" (click)="confirm(item)">Так</button>
     <button type="button" class="btn btn-primary" (click)="decline()">Ні</button>
   </div>
-</ng-template>
+</ng-template> -->
