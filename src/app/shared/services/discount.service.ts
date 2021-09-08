@@ -24,7 +24,6 @@ export class DiscountService {
 
   private urlJson: string;
 
-
   constructor(private http: HttpClient) {
     this.urlJson = 'http://localhost:3000/discounts';
   }
@@ -63,6 +62,10 @@ export class DiscountService {
 
   updateJSONDiscountsS(discount: IDiscount): Observable<IDiscount> {
     return this.http.put<IDiscount>(`${this.urlJson}/${discount.id}`, discount)
+  }
+
+  getJSONOneDetailsDiscountsS(id: number): Observable<IDiscount> {
+    return this.http.get<IDiscount>(`${this.urlJson}/${id}`)
   }
 
 }

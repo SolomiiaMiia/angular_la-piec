@@ -18,24 +18,26 @@
   },
   "discounts": [
     {
-      "title": "1",
-      "urlName": "1",
-      "description": "1",
+      "title": "2 + 1",
+      "urlName": "",
+      "description": "Акція",
       "image": "https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "name": "uiu",
+      "urlName": "iui",
       "id": 1
     },
     {
-      "title": "2",
-      "urlName": "2434",
-      "description": "2",
-      "image": "https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg",
+      "name": "drink",
+      "urlName": "jkk",
       "id": 2
     },
     {
-      "title": "33",
-      "urlName": "3",
-      "description": "3",
-      "image": "https://www.lapiec-pizza.com.ua/wp-content/uploads/2020/05/aktsiya-dlya-sajta-21.jpg",
+      "name": "jjlji",
       "id": 3
     }
   ]

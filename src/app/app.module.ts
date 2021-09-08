@@ -21,8 +21,15 @@ import { AdminDiscountsComponent } from './admin/admin-discounts/admin-discounts
 import { AdminCategoriesComponent } from './admin/admin-categories/admin-categories.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { DiscountDetailsComponent } from './pages/discount-details/discount-details.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +49,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AdminCategoriesComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
+    DiscountDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +57,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
+    // AngularFireModule.initializeApp(environment),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

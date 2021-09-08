@@ -27,7 +27,6 @@ export class DiscountComponent implements OnInit {
     );
   }
 
-  // блабла
 
   // private getStaticDiscounts(): void {
   //   this.discount = this.discService.getDiscountsS();

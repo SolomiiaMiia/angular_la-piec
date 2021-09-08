@@ -1,1 +1,55 @@
-<p>admin-categories works!</p>
+<br>
+<button type="button" class="btn btn-primary" style="margin-left: 40px" (click)="openModal(template)">Create
+  category</button>
+<br><br>
+
+<table class="table" style="margin-left: 40px">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">URL</th>
+      <th scope="col">Eddit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of adminCategories">
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.urlName}}</td>
+      <td><button class="btn btn-warning">Edit</button></td>
+      <td><button class="btn btn-danger">Delete</button></td>
+      <!-- <td><button (click)="openModalConfirm(templateConfirm)" class=" btn btn-danger">Delete</button></td> -->
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- modal -->
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form style="margin-left: 40px">
+      <div class="form-group">
+        <label for="categoryName">Title</label>
+        <input [(ngModel)]="categoryName" name="categoryName" type="text" class="form-control" id="categoryName">
+      </div>
+      <div class="form-group">
+        <label for="categoryUrlName">URL</label>
+        <input [(ngModel)]="categoryUrlName" name="categoryUrlName" type="text" class="form-control"
+          id="categoryUrlName">
+      </div>
+      <br>
+      <button *ngIf="!editStatus" (click)="addCategory()" type="button" class="btn btn-success">Add</button>
+      <button *ngIf="editStatus" type="button" class="btn btn-info">Save</button>
+    </form>
+  </div>
+</ng-template>

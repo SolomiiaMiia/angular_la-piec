@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { DiscountComponent } from './pages/discount/discount.component';
+import { DiscountDetailsComponent } from './pages/discount-details/discount-details.component';
 import { PizzaComponent } from './pages/pizza/pizza.component';
 import { SaladComponent } from './pages/salad/salad.component';
 import { DrinksComponent } from './pages/drinks/drinks.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'discount', component: DiscountComponent },
+  { path: 'discount/:id', component: DiscountDetailsComponent },
   { path: 'pizza', component: PizzaComponent },
   { path: 'salad', component: SaladComponent },
   { path: 'drinks', component: DrinksComponent },

@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title text-center">{{item.title}}</h5>
           <div class="d-flex justify-content-center">
-            <button class="btn btn-danger">Скористатися</button>
+            <a class="btn btn-danger" [routerLink]="[ '/discount', item.id ]">Скористатися</a>
           </div>
         </div>
       </div>
