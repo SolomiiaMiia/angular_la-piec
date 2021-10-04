@@ -1,21 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "discounts": [
     {
       "title": "2 + 1",
@@ -27,18 +10,95 @@
   ],
   "categories": [
     {
-      "name": "uiu",
-      "urlName": "iui",
+      "name": "Піца",
+      "urlName": "pizza",
       "id": 1
     },
     {
-      "name": "drink",
-      "urlName": "jkk",
+      "name": "Салат",
+      "urlName": "salad",
       "id": 2
     },
     {
-      "name": "jjlji",
+      "name": "Напої",
+      "urlName": "drinks",
       "id": 3
+    }
+  ],
+  "products": [
+    {
+      "name": "кока-кола",
+      "urlName": "coca-cola",
+      "category": {
+        "name": "Напої",
+        "urlName": "drinks",
+        "id": 3
+      },
+      "description": "coca-cola 0,5 L",
+      "price": 30,
+      "weight": "0.5",
+      "count": 1,
+      "id": 2
+    },
+    {
+      "name": "Піца La П'єц Карбонара",
+      "urlName": "karbonara",
+      "category": {
+        "name": "Піца",
+        "urlName": "pizza",
+        "id": 1
+      },
+      "description": "соус томатный, ветчина, запеченное яйцо, сыр моцарелла, боварские колбаски",
+      "price": 172,
+      "weight": "480 гр",
+      "image": "https://la.ua/wp-content/uploads/2021/08/carbonara.jpg",
+      "count": 1,
+      "id": 7
+    },
+    {
+      "name": "Салат Цезар зі смаженим курячим філе",
+      "urlName": "czezar",
+      "category": {
+        "name": "Салат",
+        "urlName": "salad",
+        "id": 2
+      },
+      "description": "Салат айсберг, помідори, куряче м`ясо, сир пармезан, перепелині яйця, духмяні сухарики та фірмова заправка - соус «Цезар».",
+      "price": 135,
+      "weight": "250 гр",
+      "image": "https://la.ua/wp-content/uploads/2021/08/tsezar-z-kurkoyu.png",
+      "count": 1,
+      "id": 8
+    },
+    {
+      "name": "Гавайська",
+      "urlName": "gavajska",
+      "category": {
+        "name": "Піца",
+        "urlName": "pizza",
+        "id": 1
+      },
+      "description": "сир моцарела, соус вершковий, філе куряче, кукурудза, ананас, оливки, перець болгарський.",
+      "price": 165,
+      "weight": "535 гр",
+      "image": "https://firebasestorage.googleapis.com/v0/b/la-piec-6471a.appspot.com/o/images%2Fhawaiian.jpg?alt=media&token=dcaa398d-cdf4-441a-bbf1-eb21c160e3a5",
+      "count": 1,
+      "id": 9
+    },
+    {
+      "name": "Кватро формаджі",
+      "urlName": "kvatro-formadzhi",
+      "category": {
+        "name": "Піца",
+        "urlName": "pizza",
+        "id": 1
+      },
+      "description": "соус вершковий, пармезан, сир моцарела, сир рікота, сир дорблю, волоський горіх, груша.",
+      "price": 202,
+      "weight": "410 гр",
+      "image": "https://firebasestorage.googleapis.com/v0/b/la-piec-6471a.appspot.com/o/images%2Fkvatro.jpg?alt=media&token=2c188c3f-d251-435f-a4cb-b02613076728",
+      "count": 1,
+      "id": 10
     }
   ]
 }

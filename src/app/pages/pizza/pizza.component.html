@@ -1,1 +1,22 @@
-<p>pizza works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4" *ngFor="let item of productsPizza">
+      <div class="card">
+        <img [src]="item.image" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{item.name}}</h5>
+          <p class="text">{{item.description}}</p>
+          <div class="d-flex justify-content-between">
+            <span class="h3 text-danger">{{item.price * item.count}} грн</span>
+            <div>
+              <button (click)="productCount(item, false)" class="btn btn-danger">-</button>
+              <input type="text" [value]="item.count" disabled style="width: 30px;">
+              <button (click)="productCount(item, true)" class="btn btn-success">+</button>
+            </div>
+          </div>
+          <a (click)="addBasket(item)" class="btn btn-danger">Купити</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

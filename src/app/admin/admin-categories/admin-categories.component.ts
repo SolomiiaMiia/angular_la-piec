@@ -36,7 +36,7 @@ export class AdminCategoriesComponent implements OnInit {
 
   addCategory(): void {
     const newCateg = new Category(this.categoryName, this.categoryUrlName);
-    this.apiService.postJSONCategory(newCateg).subscribe(
+    this.apiService.postJSONCategory(newCateg).subscribe(   //відправляємо
       () => {
         this.getCategories();
       },

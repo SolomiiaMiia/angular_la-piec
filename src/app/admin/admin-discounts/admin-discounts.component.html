@@ -71,7 +71,8 @@
       </div>
       <div class="form-group">
         <label for="itemDescription">Description</label>
-        <textarea [(ngModel)]="itemDescription" name="itemDescription" class="form-control" id=""></textarea>
+        <textarea [(ngModel)]="itemDescription" name="itemDescription" class="form-control"
+          id="itemDescription"></textarea>
       </div>
       <br>
       <button *ngIf="!editStatus" (click)="addItem()" type="button" class="btn btn-success">Add</button>

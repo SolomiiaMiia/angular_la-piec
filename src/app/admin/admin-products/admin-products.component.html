@@ -1,1 +1,103 @@
-<p>admin-products works!</p>
+<form style="margin-left: 40px">
+  <div class="form-group ">
+    <select class="form-select" [(ngModel)]="currentCategory" name="currentCategory"
+      aria-label="Default select example">
+      <option selected disabled>Вибрати категорію</option>
+      <option [ngValue]="item" *ngFor="let item of adminCategories">{{item.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="productName">Title</label>
+    <input [(ngModel)]="productName" name="productName" type="text" class="form-control" id="productName">
+  </div>
+  <div class="form-group">
+    <label for="productUrlName">URL</label>
+    <input [(ngModel)]="productUrlName" name="productUrlName" type="text" class="form-control" id="productUrlName">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="productDescription">Description</label>
+    <textarea [(ngModel)]="productDescription" name="productDescription" id="productDescription" class="form-control"
+      cols="20" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="productPrice">Price</label>
+    <input type="number" [(ngModel)]="productPrice" name="productPrice" class="form-control" style="width: 170px;"
+      id="productPrice">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="productWeigth">Weigth</label>
+    <input [(ngModel)]="productWeigth" name="productWeigth" type="text" class="form-control" style="width: 170px;"
+      id="productWeigth">
+  </div>
+  <br>
+
+  <div class="form-group">
+    <div class="mb-3">
+      <input (change)="uploadFile($event)" type="file" class="form-control" id="productImage">
+    </div>
+  </div>
+  <br>
+  <div class="progress mt-3 mb-3" *ngIf="!uploadStatus">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+      [style.width]="(uploadProgress | async) + '%'" aria-valuemin="0" aria-valuemax="100">
+    </div>
+  </div>
+  <div class="form-group" *ngIf="uploadStatus">
+    <img [src]="productImage" alt="" width="200px">
+    <button type="button" (click)="deleteImage()" class="btn btn-danger">Delete</button>
+  </div>
+  <button type="button" (click)="addProduct()" class="btn btn-success">Add</button>
+  <!-- <button type="button" class="btn btn-info">Save</button> -->
+</form>
+
+<br>
+<!-- <button type="button" class="btn btn-primary" style="margin-left: 40px" (click)="openModal(template)">Create
+  category</button> -->
+<!-- <button type="button" class="btn btn-primary" style="margin-left: 40px">Create
+  product</button> -->
+<br><br>
+
+<table class="table" style="margin-left: 40px">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Category</th>
+      <th scope="col">Title</th>
+      <th scope="col">URL</th>
+      <th scope="col">Eddit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of adminProducts">
+      <td>{{item.id}}</td>
+      <td>{{item.category.name}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.urlName}}</td>
+      <td><button class="btn btn-warning">Edit</button></td>
+      <td><button class="btn btn-danger" (click)="deleteProduct(item)">Delete</button></td>
+      <!-- <td><button (click)="openModalConfirm(templateConfirm)" class=" btn btn-danger">Delete</button></td> -->
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- modal додати пізніше -->
+
+<!-- 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    форму тут вставити
+
+  </div>
+</ng-template> -->

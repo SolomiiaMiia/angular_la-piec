@@ -41,7 +41,6 @@ export class AdminDiscountsComponent implements OnInit {
   }
 
 
-
   addItem(): void {
     const NEW_ITEM = new Discount(this.itemTitle, this.itemUrlName,
       this.itemDescription, this.itemImage);
@@ -100,9 +99,6 @@ export class AdminDiscountsComponent implements OnInit {
       );
     }
   }
-
-
-
 }
 
 

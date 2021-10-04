@@ -56,6 +56,7 @@ export class DiscountService {
   postJSONDiscountsS(discount: IDiscount): Observable<IDiscount> {
     return this.http.post<IDiscount>(this.urlJson, discount);
   }
+
   deleteJSONDiscountsS(id: number): Observable<IDiscount> {
     return this.http.delete<IDiscount>(`${this.urlJson}/${id}`);
   }
